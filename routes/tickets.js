@@ -8,7 +8,6 @@ const ticketsCtrl = require('../controllers/tickets');
 router.get('/tickets/new', ticketsCtrl.new);
 // POST /tickets (create functionality)
 router.post('/tickets', ticketsCtrl.create);
-// POST /movies/:id/tickets (associate a performer with a movie)
-router.post('/movies/:id/tickets', ticketsCtrl.addToCast);
+
 
 module.exports = router;

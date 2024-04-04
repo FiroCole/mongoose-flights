@@ -12,13 +12,13 @@ async function addToFlight(req, res) {
   // The cast array holds the ticket's ObjectId (referencing)
   flight.cast.push(req.body.ticketId);
   await flight.save();
-  res.redirect(`/flights/${flight._id}`);
+  res.redirect(`flights/${flight._id}`);
 }
 
 async function newTicket(req, res) {
   //Sort tickets by their seat
   const tickets = await Ticket.find({}).sort('seat');
-  res.render('tickets/new', { title: 'Add ticket', tickets });
+  res.render('tickets/new', { title: 'Add Ticket', tickets, errorMsg: ''  });
 }
 
 async function create(req, res) {
@@ -34,5 +34,5 @@ async function create(req, res) {
   } catch (err) {
     console.log(err);
   }
-  res.redirect('/tickets/new');
+  res.redirect(`/flights/${flight._id}`);
 }
