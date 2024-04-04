@@ -16,8 +16,8 @@ async function addToFlight(req, res) {
 }
 
 async function newTicket(req, res) {
-  //Sort tickets by their name
-  const tickets = await Ticket.find({}).sort('name');
+  //Sort tickets by their seat
+  const tickets = await Ticket.find({}).sort('seat');
   res.render('tickets/new', { title: 'Add ticket', tickets });
 }
 

@@ -7,7 +7,7 @@
   <div>Departure Time: <%= flight.departs %></div>
 </section>
 
-<form action="/flights/<%= flight._id %>/destinations" method="POST"></form>
+<form action="/flights/<%= flight._id %>/destinations" method="POST">
 <label>Destination
   <select name="airport">
     <option value="AUS">AUS</option>
@@ -64,6 +64,11 @@
   
   </section>
 
+ <a href="/tickets/new"> New ticket 2</a>
+<form action="tickets/new" method="POST"></form>
+<button type="submit">New Ticket</button>
+</form>
 
 <%- include('../partials/footer') %>
 
+<!-- OR SHOULD THE FORM ACTION BE "/flights/<%= flight._id %>/tickets/new" -->
