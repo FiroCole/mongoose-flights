@@ -10,29 +10,25 @@ module.exports = {
 async function addToFlight(req, res) {
   const flight = await Flight.findById(req.params.id);
   // The cast array holds the ticket's ObjectId (referencing)
-  flight.cast.push(req.body.ticketId);
+  ticket.push(req.body.flightId);
   await flight.save();
   res.redirect(`flights/${flight._id}`);
 }
 
 async function newTicket(req, res) {
-  //Sort tickets by their seat
-  const tickets = await Ticket.find({}).sort('seat');
-  res.render('tickets/new', { title: 'Add Ticket', tickets, errorMsg: ''  });
-}
+    const flightId = req.params.flightId; 
+    res.render('tickets/new', { title: 'Add Ticket', flightId, errorMsg: '' });
+  }
+  
 
 async function create(req, res) {
-  // Need to "fix" date formatting to prevent day off by 1
-  // This is due to the <input type="date"> returning the date
-  // string in this format:  "YYYY-MM-DD"
-  // https://stackoverflow.com/questions/7556591/is-the-javascript-date-object-always-one-day-off
-  // Fix by either reformatting to "MM-DD-YYYY" or by 
-  // appending a "time" fragment like this... 
-  req.body.born += 'T00:00';
-  try {
-    await Ticket.create(req.body);
-  } catch (err) {
-    console.log(err);
-  }
-  res.redirect(`/flights/${flight._id}`);
+    try {
+       let ticket = new Ticket(req.body);
+        ticket.flight = req.params.id;
+        await ticket.save();
+        res.redirect(`/flights/${req.params.id}`);
+    } catch (err) {
+        console.log(err);
+        res.redirect(`/flights/${req.params.id}/tickets/new`);
+    }
 }
