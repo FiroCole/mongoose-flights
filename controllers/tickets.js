@@ -16,7 +16,7 @@ async function addToFlight(req, res) {
 }
 
 async function newTicket(req, res) {
-    const flightId = req.params.flightId; 
+    const flightId = req.params.id; 
     res.render('tickets/new', { title: 'Add Ticket', flightId, errorMsg: '' });
   }
   

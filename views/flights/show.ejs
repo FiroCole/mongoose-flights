@@ -47,16 +47,12 @@
     <table>
       <thead>
         <tr>
-          <th>Seat</th>
-          <th>Price</th>
-          <th>Flight</th>
+          <th>Seat Number</th>
         </tr>
       </thead>
       <tbody>
         <% tickets.forEach(function(t) { %>
               <td><%= t.seat %></td>
-              <td><%= t.price %></td> 
-              <td><%= t.flight %></td> 
             </tr>
         <% }); %>
       </tbody>
@@ -64,7 +60,7 @@
   
   </section>
 
- <form action="/tickets/new">
+ <form action="/flights/<%= flight._id %>/tickets/new">
   <button type="submit">New Ticket </button>
 </form>
 
