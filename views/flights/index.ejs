@@ -1,37 +1,45 @@
 <%- include('../partials/header') %>
 
-<h2>Flight List</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Airline</th>
-      <th>Airport</th>
-      <th>Flight number</th>
-      <th>Departure Time</th>
-      <th>Destination</th>
-      <th>Details</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% flights.sort(function(a, b) { return new Date(a.departs) - new Date(b.departs); }).forEach(function(f) { %>
-      <% let now = new Date(); %>
-      <% let flightDate = new Date(f.departs); %>
-      <% if (flightDate < now) { %>
-        <tr class="pastFlight">
-      <% } else { %>
-        <tr>
-      <% } %>
-          <td><%= f.airline %></td>
-          <td><%= f.airport %></td>
-          <td><%= f.flightNo %></td>
-          <td><%= f.departs %></td> 
-          <td> <a href="/flights/<%= f._id %>"> Details for flight <%= f.flightNo %></a></td> 
+  <h2>Flight List</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Airline</th>
+        <th>Airport</th>
+        <th>Flight number</th>
+        <th>Departure Time</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% flights.sort(function(a, b) { return new Date(a.departs) - new Date(b.departs); }).forEach(function(f) { %>
+        <% let now=new Date(); %>
+          <% let flightDate=new Date(f.departs); %>
+            <% if (flightDate < now) { %>
+              <tr class="pastFlight">
+                <% } else { %>
+              <tr>
+                <% } %>
+                  <td>
+                    <%= f.airline %>
+                  </td>
+                  <td>
+                    <%= f.airport %>
+                  </td>
+                  <td>
+                    <%= f.flightNo %>
+                  </td>
+                  <td>
+                    <%= f.departs %>
+                  </td>
+                
+                  <td> <a href="/flights/<%= f._id %>"> Details for flight <%= f.flightNo %></a></td>
 
-        </tr>
-    <% }); %>
-  </tbody>
+              </tr>
+              <% }); %>
+    </tbody>
   </table>
-  
 
 
-<%- include('../partials/footer') %>
+
+  <%- include('../partials/footer') %>

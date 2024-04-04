@@ -9,13 +9,14 @@ var flightsCtrl = require('../controllers/flights');
 /* GET /flights/new  */
 router.get('/new', flightsCtrl.new);
 
-/* GET /flights listing. */
+// get /flight/:id
+router.get("/:id", flightsCtrl.show)
+
+// GET /flights
 router.get('/', flightsCtrl.index);
 
 // Post /flight
 router.post('/', flightsCtrl.create);
 
-// get /flight/:id
-router.get("/:id", flightsCtrl.show)
 
 module.exports = router;
