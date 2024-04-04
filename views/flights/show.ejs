@@ -1,5 +1,69 @@
 <%- include('../partials/header') %>
 
-  <h3><%= flight.flight %></h3>
+<section id="show-page">
+  <div>Airline: <%= flight.airline %> </div>
+  <div>Departure Airport: <%= flight.airport %></div>
+  <div>Flight number: <%= flight.flightNo %></div>
+  <div>Departure Time: <%= flight.departs %></div>
+</section>
+
+<form action="/flights/<%= flight._id %>/destinations" method="POST"></form>
+<label>Destination
+  <select name="airport">
+    <option value="AUS">AUS</option>
+    <option value="ATL">ATL</option>
+    <option value="DEN">DEN</option>
+    <option value="DFW">DFW</option>
+    <option value="GIG">GIG</option>
+    <option value="LAX">LAX</option>
+    <option value="SAN">SAN</option>
+    <option value="SSA">SSA</option>
+  </select>
+ </label><br>
+ <label>Arrival Time:
+  <input type="datetime-local" name="arrival">
+</label><br>
+<button type="submit">Add Destination Information</button>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>Destination</th>
+      <th>Arrival Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% flight.destinations.forEach(function(d) { %>
+                <td><%= d.airport %></td>
+          <td><%= d.arrival %></td> 
+        </tr>
+    <% }); %>
+  </tbody>
+  </table>
+
+<!-- I want to view a list of the tickets that have been created for that flight -->
+  <section id="seat-display">
+    <table>
+      <thead>
+        <tr>
+          <th>Seat</th>
+          <th>Price</th>
+          <th>Flight</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% tickets.forEach(function(t) { %>
+              <td><%= t.seat %></td>
+              <td><%= t.price %></td> 
+              <td><%= t.flight %></td> 
+            </tr>
+        <% }); %>
+      </tbody>
+      </table> 
+  
+  </section>
+
 
 <%- include('../partials/footer') %>
+
